@@ -6,8 +6,6 @@
 
 <div align="center">
   
-  # Hi there, I'm Oytun! 👋
-  
   <img src="./header.svg" width="100%" alt="Seamless Sliding Text">
   
 </div>
