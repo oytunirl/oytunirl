@@ -2,9 +2,9 @@ name: generate pacman game
 
 on:
   schedule:
-    - cron: "0 */24 * * *" # Run automatically every 24 hours
-  workflow_dispatch: # Allows manual triggering
-  push: # Runs on every push to the main branch
+    - cron: "0 */24 * * *"
+  workflow_dispatch:
+  push:
     branches:
       - main
       - master
@@ -17,26 +17,43 @@ jobs:
     timeout-minutes: 5
 
     steps:
-      # 1. Generate the standard Pac-Man graph
+      # 1. Generate the graph
       - name: generate pacman-contribution-graph.svg
         uses: abozanona/pacman-contribution-graph@main
         with:
           github_user_name: ${{ github.repository_owner }}
-          # Note: This action requires the token to fetch data
-          github_token: ${{ secrets.GITHUB_TOKEN }} 
+        env:
+          # Token must be here for permissions
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # 2. Prepare files for the output branch
-      # We move the file to 'dist' and create a dark copy so your README links work
+      # 2. Debug & Prepare Files (The Fix)
       - name: Prepare Output Files
         run: |
+          # List files to see what happened (for debugging)
+          ls -R
+          
+          # create dist folder
           mkdir -p dist
-          cp pacman-contribution-graph.svg dist/pacman-contribution-graph.svg
-          cp pacman-contribution-graph.svg dist/pacman-contribution-graph-dark.svg
-          # Helper to make the dark file actually dark
+
+          # FIND the file wherever it is
+          FILE=$(find . -name "pacman-contribution-graph.svg" | head -n 1)
+
+          if [ -z "$FILE" ]; then
+            echo "ERROR: The file was not generated. Check the 'generate' step logs."
+            exit 1
+          else
+            echo "Found file at: $FILE"
+          fi
+
+          # Copy it to dist
+          cp "$FILE" dist/pacman-contribution-graph.svg
+          
+          # Create dark mode version
+          cp "$FILE" dist/pacman-contribution-graph-dark.svg
           sed -i 's/fill="#ffffff"/fill="#0d1117"/g' dist/pacman-contribution-graph-dark.svg
 
-      # 3. Push the 'dist' folder to the output branch
-      - name: push pacman-contribution-graph.svg to the output branch
+      # 3. Push
+      - name: push to output branch
         uses: crazy-max/ghaction-github-pages@v3.1.0
         with:
           target_branch: output
