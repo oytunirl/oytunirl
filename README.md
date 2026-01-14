@@ -8,6 +8,6 @@
   
   # Hi there, I'm Oytun! 👋
   
-  <img src="./header.svg" width="435" alt="Sliding Text">
+  <img src="./header.svg" width="100%" alt="Seamless Sliding Text">
   
 </div>
