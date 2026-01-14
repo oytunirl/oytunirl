@@ -12,7 +12,8 @@ jobs:
     
     steps:
       - name: generate pacman-contribution-graph.svg
-        uses: abozanona/pacman-contribution-graph
+        # The fix is here: added "@main" to the end
+        uses: abozanona/pacman-contribution-graph@main
         with:
           github_user_name: ${{ github.repository_owner }}
 
