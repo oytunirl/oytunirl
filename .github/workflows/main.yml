@@ -23,36 +23,33 @@ jobs:
         with:
           github_user_name: ${{ github.repository_owner }}
         env:
-          # Token must be here for permissions
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # 2. Debug & Prepare Files (The Fix)
+      # 2. Prepare Output Files (Fixed Logic)
       - name: Prepare Output Files
         run: |
-          # List files to see what happened (for debugging)
-          ls -R
-          
-          # create dist folder
           mkdir -p dist
 
-          # FIND the file wherever it is
-          FILE=$(find . -name "pacman-contribution-graph.svg" | head -n 1)
+          # Find where the action saved the file
+          SOURCE_FILE=$(find . -name "pacman-contribution-graph.svg" | head -n 1)
+          DEST_FILE="dist/pacman-contribution-graph.svg"
 
-          if [ -z "$FILE" ]; then
-            echo "ERROR: The file was not generated. Check the 'generate' step logs."
-            exit 1
-          else
-            echo "Found file at: $FILE"
+          echo "Found source file at: $SOURCE_FILE"
+
+          # Logic: If the file is NOT already in the destination folder, copy it.
+          # If it IS already there (which caused your error), we skip this step.
+          if [ "$SOURCE_FILE" != "$DEST_FILE" ] && [ "$SOURCE_FILE" != "./$DEST_FILE" ]; then
+            cp "$SOURCE_FILE" "$DEST_FILE"
           fi
 
-          # Copy it to dist
-          cp "$FILE" dist/pacman-contribution-graph.svg
+          # 3. Always create the Dark Mode version
+          # We copy from the valid source we found
+          cp "$SOURCE_FILE" dist/pacman-contribution-graph-dark.svg
           
-          # Create dark mode version
-          cp "$FILE" dist/pacman-contribution-graph-dark.svg
+          # Apply the dark mode hack (replace white with dark grey)
           sed -i 's/fill="#ffffff"/fill="#0d1117"/g' dist/pacman-contribution-graph-dark.svg
 
-      # 3. Push
+      # 4. Push to output branch
       - name: push to output branch
         uses: crazy-max/ghaction-github-pages@v3.1.0
         with:
