@@ -43,9 +43,6 @@
 
 </div>
 
-<br/>
-<br/>
-
 <div align="center">
 <h4>Contact Me</h4>
 
