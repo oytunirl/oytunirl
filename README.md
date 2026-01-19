@@ -33,12 +33,21 @@
   <img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white" />
   <img src="https://img.shields.io/badge/Raylib-FFFFFF?style=for-the-badge&logo=raylib&logoColor=black" />
 
+  <br/>
+  <br/>
+
+  <a href="https://github.com/anuraghazra/github-readme-stats">
+    <img height="160em" src="https://github-readme-stats.vercel.app/api?username=oytunirl&show_icons=true&theme=transparent&hide_border=true&rank_icon=github" alt="Oytunirl's GitHub Stats"/>
+    <img height="160em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=oytunirl&layout=compact&theme=transparent&hide_border=true" alt="Oytunirl's Top Languages"/>
+  </a>
+
 </div>
 
 <br/>
 <br/>
 
 <div align="center">
+<h4>Contact Me</h4>
 
   <a href="mailto:ahmetoytunkurtuldu@gmail.com">
     <img src="https://img.shields.io/badge/Gmail-ahmetoytunkurtuldu%40gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
