@@ -36,8 +36,14 @@
   <br/>
   <br/>
 
-![Stats](./profile/stats.svg)
-![Top Languages](./profile/top-langs.svg)
+<div align="center">
+  <br/>
+  <br/>
+
+  <img src="./profile/stats.svg" height="170px" alt="Stats" />
+  <img src="./profile/top-langs.svg" height="170px" alt="Top Languages" />
+
+</div>
 
 </div>
 
