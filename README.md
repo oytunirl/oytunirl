@@ -40,8 +40,16 @@
   <br/>
   <br/>
 
-  <img src="./profile/stats.svg" height="170px" alt="Stats" />
-  <img src="./profile/top-langs.svg" height="170px" alt="Top Languages" />
+  <table align="center">
+    <tr>
+      <td align="center">
+        <img src="./profile/stats.svg" height="195px" alt="Stats" />
+      </td>
+      <td align="center">
+        <img src="./profile/top-langs.svg" height="195px" alt="Top Languages" />
+      </td>
+    </tr>
+  </table>
 
 </div>
 
