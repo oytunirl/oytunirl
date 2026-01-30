@@ -19,8 +19,7 @@ jobs:
         uses: readme-tools/github-readme-stats-action@v1
         with:
           card: stats
-          options: username=${{ github.repository_owner }}&show_icons=true
-          path: profile/stats.svg
+          options: '{"username":"octocat","show_icons":true,"hide_rank":true}'
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate top languages card
