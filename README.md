@@ -36,10 +36,9 @@
   <br/>
   <br/>
 
-  <a href="https://github.com/anuraghazra/github-readme-stats">
-    <img height="160em" src="https://github-readme-stats.vercel.app/api?username=oytunirl&show_icons=true&theme=tokyonight&hide_border=true&rank_icon=github" alt="Oytunirl's GitHub Stats"/>
-    <img height="160em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=oytunirl&layout=compact&theme=tokyonight&hide_border=true" alt="Oytunirl's Top Languages"/>
-  </a>
+![Stats](./profile/stats.svg)
+![Top Languages](./profile/top-langs.svg)
+![Pinned](./profile/pin-readme-tools-github-readme-stats.svg)
 
 </div>
 
