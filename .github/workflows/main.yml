@@ -2,7 +2,7 @@ name: generate pacman game
 
 on:
   schedule:
-    - cron: "0 */24 * * *"
+    - cron: "0 0 * * *"
   workflow_dispatch:
   push:
     branches:
@@ -17,6 +17,9 @@ jobs:
     timeout-minutes: 5
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       # 1. Generate the graph
       - name: generate pacman-contribution-graph.svg
         uses: abozanona/pacman-contribution-graph@main
@@ -25,28 +28,28 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # 2. Prepare Output Files (Fixed Logic)
+      # 2. Prepare Output Files
       - name: Prepare Output Files
         run: |
           mkdir -p dist
 
-          # Find where the action saved the file
+          # Dosyanın üretildiği yeri bul
           SOURCE_FILE=$(find . -name "pacman-contribution-graph.svg" | head -n 1)
           DEST_FILE="dist/pacman-contribution-graph.svg"
 
           echo "Found source file at: $SOURCE_FILE"
 
-          # Logic: If the file is NOT already in the destination folder, copy it.
-          # If it IS already there (which caused your error), we skip this step.
+          if [ -z "$SOURCE_FILE" ]; then
+            echo "Error: pacman-contribution-graph.svg bulunamadi!"
+            exit 1
+          fi
+
           if [ "$SOURCE_FILE" != "$DEST_FILE" ] && [ "$SOURCE_FILE" != "./$DEST_FILE" ]; then
             cp "$SOURCE_FILE" "$DEST_FILE"
           fi
 
-          # 3. Always create the Dark Mode version
-          # We copy from the valid source we found
-          cp "$SOURCE_FILE" dist/pacman-contribution-graph-dark.svg
-          
-          # Apply the dark mode hack (replace white with dark grey)
+          # 3. Dark Mode versiyonunu olustur
+          cp "$DEST_FILE" dist/pacman-contribution-graph-dark.svg
           sed -i 's/fill="#ffffff"/fill="#0d1117"/g' dist/pacman-contribution-graph-dark.svg
 
       # 4. Push to output branch
