@@ -37,27 +37,21 @@
   <br/>
   <br/>
 
-<div align="center">
-  <br/>
-  <br/>
-
   <table align="center">
     <tr>
       <td align="center">
-        <img src="./profile/stats.svg" height="195px" alt="Stats" />
+        <img src="https://github-stats-extended.vercel.app/api?username=oytunirl&show_icons=true&theme=tokyonight&hide_border=true&rank_icon=github" height="195px" alt="Stats" />
       </td>
       <td align="center">
-        <img src="./profile/top-langs.svg" height="195px" alt="Top Languages" />
+        <img src="https://github-stats-extended.vercel.app/api/top-langs/?username=oytunirl&theme=tokyonight&hide_border=true&layout=compact" height="195px" alt="Top Languages" />
       </td>
     </tr>
   </table>
 
 </div>
 
-</div>
-
 <div align="center">
-<h4>Contact Me</h4>
+  <h4>Contact Me</h4>
 
   <a href="mailto:ahmetoytunkurtuldu@gmail.com">
     <img src="https://img.shields.io/badge/Gmail-ahmetoytunkurtuldu%40gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
